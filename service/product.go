@@ -97,7 +97,6 @@ func (service *ProductService) Create(ctx context.Context, uId uint, files []*mu
 			Data:   serializer.BuildProductVO(product),
 		}
 	}
-
 }
 
 func (service *ProductService) createProductImg(productDao *dao.ProductDao, file *multipart.FileHeader, uId uint, num string, product *model.Product, wg *sync.WaitGroup, errChan chan<- error) {

@@ -43,6 +43,17 @@ func NewRouter() *gin.Engine {
 			//商品操作
 			authed.POST("product", api.CreateProduct)  //创建商品
 			authed.POST("products", api.SearchProduct) //搜索商品
+
+			//收藏夹操作
+			authed.GET("favorites", api.ListFavorites)
+			authed.POST("favorites", api.CreateFavorites)
+			// authed.DELETE("favorites/:id", api.DeleteFavorite)
+
+			// 秒杀专场
+			// authed.POST("skill_product/init", api.InitSkillProductHandler())
+			// authed.GET("skill_product/list", api.ListSkillProductHandler())
+			// authed.GET("skill_product/show", api.GetSkillProductHandler())
+			// authed.POST("skill_product/skill", api.SkillProductHandler())
 		}
 	}
 	return r
