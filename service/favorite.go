@@ -6,6 +6,7 @@ import (
 	"go_mall/model"
 	"go_mall/serializer"
 	"net/http"
+	"strconv"
 )
 
 type FavoriteService struct {
@@ -75,5 +76,23 @@ func (service *FavoriteService) Create(ctx context.Context, uId uint) serializer
 		Status: http.StatusOK,
 		Msg:    "ok",
 		Data:   favorite,
+	}
+}
+
+func (service *FavoriteService) Delete(ctx context.Context, uId uint, fId string) serializer.Response {
+	favoriteDao := dao.NewFavoriteDao(ctx)
+	favoriteId, _ := strconv.Atoi(fId)
+	err := favoriteDao.DeleteFavorite(uId, uint(favoriteId))
+	if err != nil {
+		return serializer.Response{
+			Status: http.StatusNotFound,
+			Msg:    "Error",
+			Error:  "获取收藏夹失败",
+		}
+	}
+	return serializer.Response{
+		Status: http.StatusOK,
+		Msg:    "ok",
+		Error:  "删除成功",
 	}
 }

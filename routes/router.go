@@ -47,8 +47,26 @@ func NewRouter() *gin.Engine {
 			//收藏夹操作
 			authed.GET("favorites", api.ListFavorites)
 			authed.POST("favorites", api.CreateFavorites)
-			// authed.DELETE("favorites/:id", api.DeleteFavorite)
+			authed.DELETE("favorites/:id", api.DeleteFavorite)
 
+			//地址操作
+			authed.POST("addresses", api.CreateAddress)
+			authed.GET("addresses/:id", api.ShowAddress)
+			authed.GET("addresses", api.ListAddress)
+			authed.PUT("addresses/:id", api.UpdateAddress)
+			authed.DELETE("addresses/:id", api.DeleteAddress)
+
+			//购物车操作
+			authed.POST("carts", api.CreateCart)
+			authed.GET("carts/", api.ListCart)
+			authed.PUT("carts/:id", api.UpdateCart)
+			authed.DELETE("carts/:id", api.DeleteCart)
+
+			//订单操作
+			authed.POST("orders", api.CreateOrder)
+			authed.GET("orders/", api.ListOrder)
+			authed.GET("orders/:id", api.ShowOrder)
+			authed.DELETE("orders/:id", api.DeleteOrder)
 			// 秒杀专场
 			// authed.POST("skill_product/init", api.InitSkillProductHandler())
 			// authed.GET("skill_product/list", api.ListSkillProductHandler())

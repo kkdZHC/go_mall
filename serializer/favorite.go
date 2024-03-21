@@ -2,6 +2,7 @@ package serializer
 
 import (
 	"context"
+	"go_mall/conf"
 	"go_mall/dao"
 	"go_mall/model"
 )
@@ -31,7 +32,7 @@ func BuildFavorite(favorite *model.Favorite, product *model.Product) *FavoriteVO
 		CategoryId:    product.CategoryId,
 		Title:         product.Title,
 		Info:          product.Info,
-		ImgPath:       product.ImgPath,
+		ImgPath:       conf.Host + conf.HttpPort + conf.ProductPath + product.ImgPath,
 		Price:         product.Price,
 		DiscountPrice: product.DiscountPrice,
 		BossId:        favorite.BossId,

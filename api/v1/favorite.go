@@ -32,14 +32,14 @@ func CreateFavorites(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 }
 
-// func DeleteFavorite(c *gin.Context) {
-// 	deleteFavoriteService := service.FavoriteService{}
-// 	err := c.ShouldBind(&deleteFavoriteService)
-// 	claim, _ := util.ParseToken(c.GetHeader("Authorization"))
-// 	if err != nil {
-// 		c.JSON(http.StatusBadRequest, ErrorResponse(err))
-// 		util.LogrusObj.Infoln("Favorite deleteService err: ", err)
-// 	}
-// 	res := deleteFavoriteService.Delete(c.Request.Context(), claim.ID, c.Param("id"))
-// 	c.JSON(http.StatusOK, res)
-// }
+func DeleteFavorite(c *gin.Context) {
+	deleteFavoriteService := service.FavoriteService{}
+	err := c.ShouldBind(&deleteFavoriteService)
+	claim, _ := util.ParseToken(c.GetHeader("Authorization"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, ErrorResponse(err))
+		util.LogrusObj.Infoln("Favorite deleteService err: ", err)
+	}
+	res := deleteFavoriteService.Delete(c.Request.Context(), claim.ID, c.Param("id"))
+	c.JSON(http.StatusOK, res)
+}

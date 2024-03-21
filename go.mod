@@ -36,6 +36,7 @@ require (
 )
 
 require (
+	github.com/CocaineCong/gin-mall v0.0.1
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-redis/redis v6.15.9+incompatible

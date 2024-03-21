@@ -36,3 +36,7 @@ func (dao *FavoriteDao) CreateFavorite(item *model.Favorite) error {
 	err := dao.DB.Model(&model.Favorite{}).Create(&item).Error
 	return err
 }
+func (dao *FavoriteDao) DeleteFavorite(uId, fId uint) error {
+	err := dao.DB.Model(&model.Favorite{}).Where("id=? AND user_id=?", fId, uId).Delete(&model.Favorite{}).Error
+	return err
+}
