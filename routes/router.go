@@ -67,6 +67,9 @@ func NewRouter() *gin.Engine {
 			authed.GET("orders/", api.ListOrder)
 			authed.GET("orders/:id", api.ShowOrder)
 			authed.DELETE("orders/:id", api.DeleteOrder)
+
+			//支付操作
+			authed.POST("paydown", api.OrderPay)
 			// 秒杀专场
 			// authed.POST("skill_product/init", api.InitSkillProductHandler())
 			// authed.GET("skill_product/list", api.ListSkillProductHandler())
