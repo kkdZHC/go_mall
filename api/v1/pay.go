@@ -13,9 +13,10 @@ func OrderPay(c *gin.Context) {
 	claim, _ := util.ParseToken(c.GetHeader("Authorization"))
 	err := c.ShouldBind(&orderPay)
 	if err != nil {
-		res := orderPay.PayDown(c.Request.Context(), claim.ID)
-		c.JSON(http.StatusOK, res)
-	} else {
 		c.JSON(http.StatusBadRequest, err)
+		util.LogrusObj.Infoln("orderpay err: ", err)
 	}
+	res := orderPay.PayDown(c.Request.Context(), claim.ID)
+	c.JSON(http.StatusOK, res)
+
 }

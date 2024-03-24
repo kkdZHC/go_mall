@@ -36,8 +36,8 @@ func (dao *OrderDao) UpdateOrderByUid(uId, aId uint, order *model.Order) (err er
 	err = dao.DB.Model(&model.Order{}).Where("id=? AND user_id=?", aId, uId).Updates(order).Error
 	return
 }
-func (dao *OrderDao) DeleteOrderByOid(uId, aId uint) error {
-	err := dao.DB.Model(&model.Order{}).Where("id=? AND user_id=?", aId, uId).Delete(&model.Order{}).Error
+func (dao *OrderDao) DeleteOrderByOid(oId, uId uint) error {
+	err := dao.DB.Model(&model.Order{}).Where("id=? AND user_id=?", oId, uId).Delete(&model.Order{}).Error
 	return err
 }
 

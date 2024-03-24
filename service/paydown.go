@@ -28,6 +28,7 @@ func (service *OrderPay) PayDown(ctx context.Context, uId uint) serializer.Respo
 	util.Encrypt.SetKey(service.Key)
 	orderDao := dao.NewOrderDao(ctx)
 	//开启事务
+	//fmt.Println("开始事务")
 	tx := orderDao.Begin()
 	order, err := orderDao.GetOrderByOid(service.OrderId, uId)
 	if err != nil {
@@ -52,6 +53,7 @@ func (service *OrderPay) PayDown(ctx context.Context, uId uint) serializer.Respo
 	}
 	//对金钱解密，减去订单后再加密
 	//用户扣钱
+	//fmt.Println("用户扣钱")
 	moneyStr := util.Encrypt.AesDecoding(user.Money)
 	moneyFloat, _ := strconv.ParseFloat(moneyStr, 64)
 
@@ -132,6 +134,7 @@ func (service *OrderPay) PayDown(ctx context.Context, uId uint) serializer.Respo
 			Error:  err.Error(),
 		}
 	}
+	//fmt.Println("事务提交")
 	tx.Commit()
 	return serializer.Response{
 		Status: http.StatusOK,
