@@ -176,6 +176,7 @@ func (service *ProductService) Show(ctx context.Context, id string) serializer.R
 			Error:  err.Error(),
 		}
 	}
+	product.AddView()
 	return serializer.Response{
 		Status: http.StatusOK,
 		Msg:    "ok",
